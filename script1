@@ -1,0 +1,47 @@
+#!/bin/bash
+##############################################################
+# Name: script1.sh
+#
+# Coping *rc files from home directory to repository
+#
+# Usage: script.sh -n filename
+#
+# Author: BarabashK
+##############################################################
+
+usage ()
+  {
+    echo -e "##############\nCoping *rc files from directory to repository \n script.sh [OPTION] [FILE] \n -h --help \n -f --name of the file which has to be   
+    copied \n ##############"
+  }
+
+target="/cygdrive/d/users/kateryna.barabash/Documents/GitHub/Work/"
+
+#getting the arguments
+ while getopts ":hf:" opt
+ do
+    case $opt in
+         h  ) usage ;;
+         f  ) filename=$OPTARG ;;
+         \? ) usage
+              exit 1 ;;
+    esac
+ done
+
+shift $(($OPTIND-1))
+
+if [[ ! -f $filename ]] 
+   then echo "File does not exist. Please xheck it once again"
+        exit 1
+   else echo "coping to git"
+fi
+
+for filename in "$@"
+    do
+    cp $filename $target
+    cd $target 
+    git add $filename 
+done
+
+git commit -m "commit"
+git push -u origin master
