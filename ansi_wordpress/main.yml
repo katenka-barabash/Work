@@ -1,0 +1,12 @@
+---
+- name: The main playbook to set roles and hosts
+  hosts: server
+  sudo: yes
+
+
+  tasks:
+    - include: common
+    - include: apache
+    - include: mysql
+    - include: php
+    - include: wordpress
