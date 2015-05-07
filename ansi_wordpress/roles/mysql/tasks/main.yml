@@ -1,8 +1,8 @@
 ---
 - name: Install MySQL and php5-mysql
-  apt: name= {{ item }} state=latest
+  apt: pkg={{ item }} 
   with_items:
    - mysql-server
    - php5-mysql
-- name: MySQL to create its database directory
-   command: /usr/bin/mysql_install_db
+#- name: MySQL to create its database directory
+#   shell: "/usr/bin/mysql_install_db"

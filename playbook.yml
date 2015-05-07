@@ -1,0 +1,6 @@
+---
+- hosts: 192.168.56.102
+  tasks: 
+    - name: First playbook to check if its working
+      shell: hostname
+    - include: tasks/in.yml 

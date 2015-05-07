@@ -1,17 +1,20 @@
 ---
 - name: Install PHP
-  apt: name={{ item }}  state=latest
+  apt: pkg={{ item }}
   with_items:
-  - php5
-  - libapache2-mod-php5
-  - php5-mcrypt
-  - php5-cli
-  - php5-gd 
-  - libssh2-php
+    - php5
+    - php5-cgi
+    - php5-fpm
+    - php5-memcache
+    - php5-memcached
+    - php5-mcrypt
+    - php5-mysql
+    - php5-gd
+    - php5-curl
+    - php5-xmlrpc
 
-  - name: Change /etc/apache2/mods-enabled/dir.conf
-    replace: dest=/etc/apache2/mods-enabled/dir.conf regexp='^(DirectoryIndex)\s+index.html\s*$' replace='\1 DirectoryIndex index.php'
 
- - name: Restart apache2
-   notify: 
-     - restart: apache2   
+- name: Change /etc/apache2/mods-enabled/dir.conf
+  replace: dest=/etc/apache2/mods-enabled/dir.conf regexp='(DirectoryIndex)\s+index.html\s*$' replace='\1 DirectoryIndex index.php'
+  notify: 
+  - restart: apache2   

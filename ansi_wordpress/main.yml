@@ -4,9 +4,9 @@
   sudo: yes
 
 
-  tasks:
-    - include: common
-    - include: apache
-    - include: mysql
-    - include: php
-    - include: wordpress
+  roles:
+    - common
+    - apache
+    - mysql
+    - php
+    - wordpress

@@ -1,0 +1,6 @@
+---
+#will be included in others playbook. Saved as tasks/in.yaml
+- name: echo hello
+  command: echo hello
+- name: echo world
+  command: echo world
