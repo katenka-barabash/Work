@@ -1,3 +1,0 @@
----
-- name: Install and configure apache
-  apt: name=apache2 state=latest
