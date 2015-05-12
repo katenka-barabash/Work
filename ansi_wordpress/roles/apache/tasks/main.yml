@@ -1,3 +1,19 @@
 ---
 - name: Install and configure apache
   apt: name=apache2 state=latest
+
+- name: Apache | Enable some required modules
+  action: command a2enmod rewrite vhost_alias expires
+  tags: common
+
+- name: Apache | Configuration file for our site
+  action: template src=etc-apache2-sites-available-wordpress.j2 dest=/etc/apache2/sites-available/wordpress.conf
+  tags: common
+
+- name: Apache | Disable the default site
+  action: command a2dissite default
+  tags: common
+
+- name: Apache | Enable our new site
+  action: command a2ensite wordpress
+  tags: common
